@@ -1,0 +1,4 @@
+def sum(x):
+    '''This is the doc string'''
+    x = x + 2
+    return x

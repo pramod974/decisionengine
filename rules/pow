@@ -1,0 +1,5 @@
+import math
+def pow(x):
+    '''This is the doc string for pow'''
+    x=math.pow(x,2)
+    return x
