@@ -1,0 +1,76 @@
+pg1
+Chapter 1: Introduction
+1.1 Data Sources
+1.2 Problems and Challenges with Data 
+1.3 Data Transformation and Reconciliation
+
+pg2
+1.4 Software Architecture and Design Patterns
+
+pg4
+Chapter 2: Motivation
+
+
+2.1	Introduction
+
+2.2	What are Business Rules? 
+
+pg5
+2.3	Problems associated with Business rules
+2.4	Rule Engine
+
+pg6
+2.5	Advantages of Rule Engine over if… then structure
+2.5.1 Declarative Programming
+2.5.2 Logic and Data Separation
+2.5.3 Speed and Scalability
+2.5.4 Centralization of Knowledge
+
+pg7
+
+2.5.5 Tool Integration
+2.5.6 Explanation Facility
+2.5.7 Understandable Rules
+2.6	When to use a Rule engine and when not to use Rule engine?
+
+pg8
+2.7	Rules Design Pattern
+
+pg 9
+2.8	Need over available solutions and true motivation
+
+pg11
+Chapter 3: Project Overview
+3.1	Existing System
+
+3.2	Problems with Existing System
+
+pg12
+3.3	Available Software Solutions and their Issues 
+
+3.4	Proposed System
+3.4.1	Rule Repository
+
+pg13
+3.4.2	Rule Orchestration
+3.4.3	Functionality Repository
+3.4.4	Decision Engine
+
+pg16
+3.5 Objectives
+3.6 Scope of work
+
+pg17
+Chapter 4: Decision Platform
+
+4.1 What is a Platform?
+4.2 Expected Features
+4.2.1 User friendly design
+4.2.2 Cost Reduction
+4.2.3 Training
+
+pg 18
+4.3 Decision Platform Details
+
+4.3.1 Python Open-Source Scripting Language
+4.3.2 Continuous Integration Using Jenkins
