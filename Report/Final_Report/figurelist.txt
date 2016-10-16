@@ -4,25 +4,28 @@ Figure1 : Rules Skeleton
 pg6
 Figure2 : Rules
 
-pg 9
+pg 8
 Figure3 : Rules Design Pattern
 
-pg10
+pg9
 Figure4 : Rules.NET by Decisions
 
-pg11
+pg10
 Figure5 : Knotted rules in Existing System
 
-pg12
+pg11
 Figure6 : Rule Repository
 
-pg13
+pg12
 Figure7 : Rule Orchestration
 
-pg14
+pg13
 Figure 8: Sources on which Decision Engine operates
 Figure9 : Decision Engine Flow Step 1
 Figure10 : Decision Engine Flow Step 2
 
 pg 15
 Figure 11: Output of the decision engine
+
+pg18
+Figure 12: Project Overview

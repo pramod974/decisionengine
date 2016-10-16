@@ -1,0 +1,419 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Plagiarism Checker | Viper - Free Plagiarism Checker and Scanner Software</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="http://feeds.feedburner.com/ViperScanner" rel="alternate" type="application/rss+xml" title="ScanMyEssay RSS. News &amp; Updates"/>
+        <link href="http://www.scanmyessay.com/css/main.css" rel="stylesheet" type="text/css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+        <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js" type="text/javascript"></script>
+        <link rel="shortcut icon" href="http://www.scanmyessay.com/favicon.ico"/>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#exp-content").hide();
+                $("#s1").click(function () {
+                    $("#exp-content").fadeIn("slow"); //fadeIn
+                    $("#s1").hide();
+                });
+                $("#h1").click(function () {
+                    $("#exp-content").hide("slow");
+                    $("#s1").show();
+                });
+            });
+            
+        </script>
+
+        <style type="text/css">
+        	
+        	#plg-notes {
+        		margin: 15px 0;
+        	}
+        .no-underline {
+        	text-decoration:none;
+        }
+        .matched-text 
+        {
+        	text-decoration:none;
+        	background-color: #fff86a /*#febbbb*/; 	
+        }
+        #document-text a {
+        	color: #000;
+        }
+        #document-text a:hover {
+        	color: #000;
+        }        
+        .divcenter {
+        	margin: 5px 0;
+        	padding-left: 1px;
+        }
+        .coner-radius 
+        {
+        	-moz-border-radius:3px;
+        	-webkit-border-radius:3px;
+        }
+        #h1 {
+        	display: block;
+        	text-align: right;
+        }
+        
+        #main 
+        {
+        	padding: 5px 5px 20px 5px;       	
+        }
+        #menu ul li h2 
+        {
+           	margin: 5px 5px;
+           	color: #ccc;
+        }
+          
+        	.main-container-top{
+        	
+        		border: 1px solid #fcefa1; /*need removing this*/
+        		background: #fbf9ee;
+        		width: auto;
+        		height: auto;
+        		margin-right: 0;
+        		margin-top: 40px;
+        		float: none;
+        	}
+            .main-container-mid {
+        	    border: 1px solid #aaa; /*need removing this*/
+            	width: auto;
+            	height:auto;
+            	margin: 5px 0;
+            }
+            .main-container-bottom {
+            	border: 1px solid #aaa; /*need removing this*/
+            	width: auto;
+            	height:auto;
+            	margin: 2px 0;	
+            }
+            
+        	.ie-h1-fix {
+        		margin-top: 0px;
+        		padding-bottom: 3px;
+        	}
+        	
+        	.red-text {
+        		color: #c40028;
+        	}
+        	
+        	#rounded-corner
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 9px;
+	margin: 1px;
+	text-align: left;
+	border-collapse: collapse;
+	
+}
+
+#rounded-corner tbody 
+{
+	width: inherit;
+	height: 300px;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+#rounded-corner thead th.rounded-location
+{
+	/* background: #ccc;  #b9c9fe;*/
+	-moz-border-radius-topleft: 3px;
+	-webkit-border-top-left-radius: 3px;
+    width: 40%;
+   /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(247,247,247,1)), color-stop(50%,rgba(132,132,132,1)), color-stop(50%,rgba(132,132,132,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+  /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(52%,rgba(209,209,209,1)), color-stop(100%,rgba(242,242,242,1))); /* Chrome,Safari4+ */
+}
+#rounded-corner thead th.rounded-doc-title
+{
+    width: 30%;
+}
+#rounded-corner thead th.rounded-plg-wrd-count
+{
+}
+#rounded-corner thead th.rounded-mst-plg-pecnt
+{
+}
+#rounded-corner thead th.rounded-unq-wrds-mtch
+{
+}
+#rounded-corner thead th.rounded-unq-mtch-pecnt
+{
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(52%,rgba(209,209,209,1)), color-stop(100%,rgba(242,242,242,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+	/*background: #ccc;*/
+	-moz-border-radius-topright: 3px;
+	-webkit-border-top-right-radius: 3px;
+}
+#rounded-corner th
+{
+	padding: 8px;
+	font-weight: normal;
+	font-size: 13px;
+	color: #555;
+	/*background: #ccc;*/
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,239,239,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(52%,rgba(209,209,209,1)), color-stop(100%,rgba(242,242,242,1))); /* Chrome,Safari4+ */
+}
+#rounded-corner td
+{
+	padding: 8px;
+	background: #f9f9f9;
+	border-top: 1px solid #fff;
+	color: #555;
+	height: auto;
+}
+
+#rounded-corner tfoot td.rounded-foot-left
+{
+	/*background: #ccc;*/
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,242,242,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(226,226,226,1))); /* Chrome,Safari4+ */
+	-moz-border-radius-bottomleft: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+}
+#rounded-corner tfoot td.rounded-foot-right
+{
+	background: #ccc;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,242,242,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(51%,rgba(209,209,209,1)), color-stop(100%,rgba(226,226,226,1))); /* Chrome,Safari4+ */
+	-moz-border-radius-bottomright: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+}
+#rounded-corner tbody tr:hover td
+{
+	background: #dadada;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(241,241,241,1)), color-stop(51%,rgba(225,225,225,1)), color-stop(100%,rgba(246,246,246,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(235,241,246,1)), color-stop(50%,rgba(171,211,238,1)), color-stop(51%,rgba(137,195,235,1)), color-stop(100%,rgba(213,235,251,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(244,250,249,1)), color-stop(51%,rgba(231,245,243,1)), color-stop(100%,rgba(248,252,251,1))); /* Chrome,Safari4+ */
+	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(234,255,229,1)), color-stop(51%,rgba(209,255,199,1)), color-stop(100%,rgba(240,255,237,1))); /* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(255,238,229,1)), color-stop(51%,rgba(255,219,199,1)), color-stop(100%,rgba(255,243,237,1))); /* Chrome,Safari4+ */
+}
+        </style>
+       
+    </head>
+    <body>
+        <div id="wrap">
+            
+            <div id="top">
+                <div id="top-left-tr">
+                    <a href="http://www.scanmyessay.com" title="ScanMyEssay">
+                        <span>Plagiarism Checker</span>
+                    </a> 
+                </div>
+
+                <div id="top-tr">
+                    <a href="http://www.scanmyessay.com/feedback/index.php" title="Contact us">Contact us</a>
+                    | 
+                    <a href="http://www.scanmyessay.com/universities.php">Universities</a>
+                    |
+                    <a href="http://www.scanmyessay.com/viper-background.php">History</a>
+                    |
+                    <a href="http://www.scanmyessay.com/testimonies.php">Testimonies</a>
+                    |
+                    <a href="http://www.scanmyessay.com/press/index.php" title="Viper Press">Press</a>
+                    |
+                    <a href="http://www.scanmyessay.com/about-us.php" title="About us">About us</a>
+                    |
+                    <a href="http://www.scanmyessay.com/sitemap.php" title="Sitemap">Sitemap</a>
+                    |
+                    <a href="http://www.scanmyessay.com/help/index.php" title="Help">Help</a>
+                    |
+                    <a href="http://www.ukessays.com/essay-help.php" title="Essay help" target="_blank">Essay help</a>
+                    |
+                    <a href="http://www.scanmyessay.com/rss/index.php" title="RSS">RSS</a>
+                    |
+                    <a href="http://www.scanmyessay.com/login/index.php" title="Log in">Log in</a>
+                </div>    
+            </div>
+               
+            <div id="menu">
+                <ul>
+                    <li>
+                        <h2>Plagiarism Report For 'textplag.txt'</h2>
+                    </li>
+                </ul> 
+            </div>
+
+            <div id="main">
+                <div class="main-container-top coner-radius">
+                    <h1 class="red-text ie-h1-fix">
+                        How does Viper work.....?
+                    </h1>
+                    <a id="s1" class="no-underline" href="#">[+] Read more..</a>
+					<div id="exp-content">
+                        Viper scans your work against over 10 billion web pages and work previously 
+                        submitted to our firm. Once the scan is completed, the report delivers content 
+                        that may match these other sources, including links to the sites that contain 
+                        the same content.
+                        <br />
+                        <br />
+                        <b class="red-text">What Do the Results Mean?</b><br />
+                        If the report sends back positive matches to content found elsewhere, there is no need to panic and assume you have plagiarised your work. Instead, review the report carefully and consider the following:
+                       
+                        <ul>
+                        <li>
+                        Is the material an entire quote, a sentence, or a fragment of 4-5 words often found together? Viper will show a match where there is a string of five or more 
+                        words that are the same as your work. Even if this is not actually plagiarism, it is important that Viper does not ignore these fragments as they draw your 
+                        attention to any sentences where the writer has &#39;rephrased&#39; parts of the 
+                        original material without referencing the source.
+                        </li> 
+                            
+                        <li>If it was intended to be a quote that you were going to attribute to the source, 
+                            did you remember to properly reference it? Sometimes, Viper will identify 
+                            matching material that is available on websites, but the reference might have 
+                            been found within another source. Just because the work has content that matches 
+                            a particular website does not mean that every possible source where it appears 
+                            has to be referenced. Just make sure that at least one reference covers that 
+                        content.
+						</li>
+                        <li>Did you actually use a footnote and it was just simply not picked up by Viper? 
+                            This review is just a means of double-checking that all references have been 
+                            included.
+						</li>
+                        <li>Could Viper have just picked up a phrase that you used more than once in your 
+                            document? This may be a way to ensure that your writing is tight rather than 
+                            repetitive or relies on overly used phrases.
+						</li>    
+                        <li>Did you use too many direct quotes? Viper checks for direct quotes and delivers 
+                            an overall percentage of words it views as direct quotes. Clearly, this should 
+                            not be too high as work that relies too heavily on other material is not 
+                            &#39;original&#39;.
+						</li>
+                        </ul>
+                            <b class="red-text">A Guide on Viper Results</b>
+                            <br/>This guide explains how Viper can identify matching content when it scans your work:
+                            <br/>
+                            <br/><b class="red-text">Overall plagiarism rating 6% or less : </b>
+                            <br/>The results are that it is highly unlikely that this document contains plagiarised material. A careful check will only be necessary if this is a lengthy document. For example, a 6% result within a 15,000 word essay would be of concern because it could mean that direct quotes are too lengthy or there are too many places where a reference was not listed.<br/>
+                            <br/><b class="red-text">Overall plagiarism rating 6% - 12% : </b>
+                            <br/>The results are that there is a low risk that the document contains any plagiarised material. Most of the matching content will probably be fragments. Review your report for any sections that may not have been referenced properly.<br/>
+                            <br/><b class="red-text">Overall plagiarism rating 13% - 20% : </b>
+                            <br/>The results are that there is a medium risk that the document contains any plagiarised material. There may be sections that match websites so it is important to check that proper credit was attributed to the other sources. The scan may not have detected quotation marks or footnotes that were used. For example, if an opening quotation mark was included but there was not a closing quotation mark, then this could explain the higher result. <br/>
+                            <br/><b class="red-text">Overall plagiarism rating 21%+ : </b>
+                            <br/>The results are that there is a high risk that the document contains plagiarised material. If the overall rating is this high, you need to check your report very carefully. It may be that there are a lot of matching fragments and the software has not identified all direct quotes , but it is critical that you go through the entire document and address every phrase or fragment that the scan has flagged to reduce this percentage.<br/>
+                            <a id="h1" class="no-underline" href="#">[-] hide</a>
+                        
+                    </div>
+                </div>
+                <div class="main-container-mid coner-radius">
+                    <table id="rounded-corner" summary="URL found to be copied">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="rounded-location">Location</th>
+                                <th scope="col" class="rounded-doc-title">Title</th>
+                                <th scope="col" class="rounded-plg-wrd-count">Words Matched</th>
+                                <th scope="col" class="rounded-mst-plg-pecnt">Match (%)</th>
+                                <th scope="col" class="rounded-unq-wrds-mtch">Unique Words Matched</th>
+                                <th scope="col" class="rounded-unq-mtch-pecnt">Unique Match (%)</th>
+                            </tr>
+                        </thead>    
+                        <tfoot>
+                            <tr>
+                                <td colspan="5" class="rounded-foot-left"><em>Documents found to be plagiarised</em></td>
+                                <td class="rounded-foot-right">&nbsp;</td>
+                            </tr>
+                        </tfoot>
+                        <tbody id="ajaxtable">
+                            <tr><td><a href=https://en.wikipedia.org/wiki/Software_architecture target="_blank">https://en.wikipedia.org/wiki/Software_architecture</a></td><td>Software architecture - Wikipedia</td><td>172</td><td>3</td><td>172</td><td>3</td></tr><tr><td><a href=https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html target="_blank">https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html</a></td><td>JBoss Rules Reference Guide - Red Hat Support</td><td>85</td><td>1</td><td>85</td><td>1</td></tr><tr><td><a href=https://en.wikipedia.org/wiki/Business_rule target="_blank">https://en.wikipedia.org/wiki/Business_rule</a></td><td>Business rule - Wikipedia, the free encyclopedia</td><td>45</td><td>1</td><td>45</td><td>1</td></tr><tr><td><a href=https://docs.jboss.org/drools/release/5.2.0.Final/drools-expert-docs/html/ch01.html target="_blank">https://docs.jboss.org/drools/release/5.2.0.Final/drools-expert-docs/html/ch01.html</a></td><td>Chapter 1. The Rule Engine - JBoss Developer</td><td>95</td><td>2</td><td>15</td><td><1</td></tr><tr><td><a href=http://docs.jboss.org/drools/release/5.5.0.Final/drools-expert-docs/html/ch01.html target="_blank">http://docs.jboss.org/drools/release/5.5.0.Final/drools-expert-docs/html/ch01.html</a></td><td>Chapter 1. Introduction - JBoss.org Documentation</td><td>95</td><td>2</td><td>1</td><td><1</td></tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <div id="plg-notes" class="divcenter red-text">
+                       <b> Matching Content: 5%</b>
+                    </div> 
+                <div class="main-container-bottom coner-radius">
+                    <div id="document-text" class="divcenter">
+                        <h2>Master Document Text</h2>
+                        <!--<a href="" class="matched-text"> xyz </a> -->
+                        <p> Chapter 1:<br /> Data Sources<br /> Data has been most sought for in the modern era to gain deeper and meaningful insights into ones business. The insight from data is required<br /> irrespective of which domain one is working on, in order to gain such insight data has to be curated from multiple sources. The data source [1]<br /> can be typically a connection set up to a carious computer databases running as a server or it could be as simple as a file (CSV, text, MSEXCEL, etc<br /> or it could just be a stream of data [3] coming in via API or live<br /> Problems and Challenges with Data<br /><br /> The volume, correctness and consistency pose a major challenge with the data collected from various sources has to be processed before they can be<br /> analysed. Some businesses require domain specific incorporations as well to meet the data quality issues. Some of the common data related problems<br /> and challenges are as follows<br /> Poor data quality such as noisy data, dirty data, missing values, inexact values, inadequate data size and poor representation<br /> Integrating conflicting or redundant data from different sources and other forms like audio, video and images, geo data, text, social, numeric, etc<br /> Proliferation of security and privacy concerns by individuals, organisations and governments<br /> Unavailability of data or difficult access to data<br /><br /> Efficiency and scalability issues to effectively extract the information from huge amount of data in databases, dealing with huge datasets that<br /> require distributed approaches, dealing with non-static, unbalanced and cost-sensitive data<br /> Constantly updating model to handle new incoming data, processing large, complex and unstructured data into a structured format<br /> Data Transformation and Reconciliation<br /><br /> Owing to multi natured problems with collected data, it has to be transformed and reconciled. Typically along with all standards process available<br /> for transformation and reconciliation, business use domain specific rules and knowledge to transform and reconcile the data so they are analysis<br /> ready<br /> Page 1<br /><br /> Data transformation is the way of converting data from one format to another; generally this involves conversion of format of a source system into<br /> the required format of a new resultant system. The typical process involves converting documents, but data<br /><br /> Conversions at times involve the conversion of a program from one computer language to another in order for the program to run on a different<br /> platform. The usual reason for this data migration is the adoption of a new system that is completely different from the previous one<br /><br /> In real world, data transformation involves the use of a special program that can read the data’s original base language, determine which language<br /> the data that must be translated for it to be usable by the new program, and then move ahead to transform that data<br /> Data Transformation consists of two phases<br /><br /> Data Mapping: This involves assignment of elements from the source system toward the destination to capture all transformations that commonly occur<br /> This is not trivial when there are complex transformations like many to one or one to many rules for transformation that need to occur<br /><br /> Code Generation: The creation of the actual transformation program. The resulting data map specification is consumed to create an executable to be<br /> executed on computer systems<br /><br /> The Reconciliation process [5] consists of validating, computing, generating data mathematically so the integrity of the data in picture is<br /> to most correct extent from available assumptions and resource<br /> Software Architecture and Design Patterns<br /><br /> Software architecture [6] refers to the fundamental structure of<a href='https://en.wikipedia.org/wiki/Software_architecture' class="matched-text" title='https://en.wikipedia.org/wiki/Software_architecture' target='_blank'> structures, the discipline of creating such structures, and the documentation<br /> these structures. These structures</a> help in describing about the software system. Each structure consists of software elements, relations between them<br /> and also properties of both put together as well,<a href='https://en.wikipedia.org/wiki/Software_architecture' class="matched-text" title='https://en.wikipedia.org/wiki/Software_architecture' target='_blank'> along with rationale for the introduction and configuration of each element<br /> The architecture of a software system is</a> similar to the architecture of a building. The software architectures comprises of following activities<br /> Architecture supporting activities<br /><br /> Software architecture supporting activities are done during core software architecture activities. These activities help a software architect to do<br /> analysis, synthesis, evaluation and evolution. For example, architect curates<a href='https://en.wikipedia.org/wiki/Software_architecture' class="matched-text" title='https://en.wikipedia.org/wiki/Software_architecture' target='_blank'> knowledge, make decisions and document during the analysis phase<br /><br /> Knowledge Management and Communication is the activity of exploring and managing knowledge that is</a> important for designing<a href='https://en.wikipedia.org/wiki/Software_architecture' class="matched-text" title='https://en.wikipedia.org/wiki/Software_architecture' target='_blank'> software architecture. A<br /> software architect does not Work</a> alone. They get details,<a href='https://en.wikipedia.org/wiki/Software_architecture' class="matched-text" title='https://en.wikipedia.org/wiki/Software_architecture' target='_blank'> functional and non-functional requirements and design contexts, from various intended</a><br /> stakeholders; and provide outputs to these<a href='https://en.wikipedia.org/wiki/Software_architecture' class="matched-text" title='https://en.wikipedia.org/wiki/Software_architecture' target='_blank'> stakeholders. Software architecture knowledge is often tacit and is</a> held in the minds of<a href='https://en.wikipedia.org/wiki/Software_architecture' class="matched-text" title='https://en.wikipedia.org/wiki/Software_architecture' target='_blank'> stakeholders<br /><br /> Design Reasoning and Decision Making is the activity</a> which evaluates design decisions. This activity is important to all three of the core software<br /> architecture activities. It consists of<a href='https://en.wikipedia.org/wiki/Software_architecture' class="matched-text" title='https://en.wikipedia.org/wiki/Software_architecture' target='_blank'> gathering and associating decision contexts, formulating design decision problems, finding solution options<br /> and evaluating</a> positives and negatives before making decisions. This process occurs at various levels of decision,<a href='https://en.wikipedia.org/wiki/Software_architecture' class="matched-text" title='https://en.wikipedia.org/wiki/Software_architecture' target='_blank'> while evaluating significant<br /> architectural requirements and software architecture decisions, and software architecture analysis, synthesis, and evaluation<br /><br /></a> Documentation is key activity of making note of all<a href='https://en.wikipedia.org/wiki/Software_architecture' class="matched-text" title='https://en.wikipedia.org/wiki/Software_architecture' target='_blank'> the design generated during the software architecture process. A system design is described using<br /> several views that frequently include a static view</a> depicting<a href='https://en.wikipedia.org/wiki/Software_architecture' class="matched-text" title='https://en.wikipedia.org/wiki/Software_architecture' target='_blank'> the code structure of the system, a dynamic view</a> depicting<a href='https://en.wikipedia.org/wiki/Software_architecture' class="matched-text" title='https://en.wikipedia.org/wiki/Software_architecture' target='_blank'> the actions of the system<br /> during execution, and a deployment view</a> depicting<a href='https://en.wikipedia.org/wiki/Software_architecture' class="matched-text" title='https://en.wikipedia.org/wiki/Software_architecture' target='_blank'> how a system is placed on hardware for execution<br /><br /></a> Design Patterns [7] are set of standard solutions for commonly occurring problems and issues in regular software designing process. These<br /> are generalized solutions and best practices which a programmer or a designer takes into account while solving the problem at hand<br /> Page 3<br /> Chapter 2:<br /> Introduction<br /><br /> Every organization will have business to do a lot of different things, each of these business span across different domains and need rules to<br /> maintain their business generally the rules are very enormous in nature and are if there are no business rules it is very chaotic and the intended<br /> output is very poor in nature and results in more work<br /><br /> Business organizations in order to tackle this rules use the help of skilled domain experts or go in leveraging specific automated software to suit<br /> their needs, sometimes there is both combination of software and human effort<br /><br /> Few organizations use software to meet their needs as there are few tools available to help them automate their requirements. The major issues are<br /> when there is change in the business rules, making these changes come in to action is a very cumbersome task<br /> What are Business Rules<br /><br /><a href='https://en.wikipedia.org/wiki/Business_rule' class="matched-text" title='https://en.wikipedia.org/wiki/Business_rule' target='_blank'> A business rule [8] is a rule that defines or constrains some aspect of business and</a> always results in the final answer being either true or<br /> Business rules goal is to assert business structure or either to control or influence the behaviour of the business. For instance, a business rule<br /> might state that if the price and volume petrol is right to be lifted from a terminal, another one would be to select a most good pick of supplier<br /> from list of preferred suppliers and supply schedules<br /><br /> Business rule are usually<a href='https://en.wikipedia.org/wiki/Business_rule' class="matched-text" title='https://en.wikipedia.org/wiki/Business_rule' target='_blank'> informal or even unwritten, documenting the rules clearly and making sure that they don't conflict is an</a> indispensable<br /> activity. When carefully steered, rules can be used to aid<a href='https://en.wikipedia.org/wiki/Business_rule' class="matched-text" title='https://en.wikipedia.org/wiki/Business_rule' target='_blank'> the organization to better achieve goals, remove obstacles to market growth, reduce<br /></a> expensive mistakes, foster communication, comply with legal requirements, and increase drastically customer loyalty<br /> All the business rules fall into any of the following four categories<br /> Definitions<br /> These define the actual domain specific definitions how data needs to act. These are generally the high level concepts which are fundamentals<br /> Facts<br /> These are atomic level calculations which define how the data has to be or how it has to be calculated or formulated<br /> Constraints<br /> The constraints define how far the data can be or how they are quantitatively controlled<br /> Derivations<br /> These are derived from facts and generally the most common rule which interleave into the facts to form more complex formulations<br /> Page 4<br /> Problems associated with Business rules<br /><br /> The rules are generally chaotic though they leverage people and automation software there are a lot of problems associated with the Business rules<br /> The most important problem is adding and changing business rules. There is always a major technical surgery required. There is a need for an<br /> application which provides consistent enforcement and constant even efficiency gain. The major technical surgery required for each change causes slow<br /> rate of change resulting in high costs<br /><br /> Generally the rules are in the hands of the developer. Whatever the creation, modification, updates, deployment and testing is generally done as a<br /> whole process. So the bottom line of the problem is to find a solution which is more flexible and moves the change and modifiability overhead to a<br /> non-developer or a business consultant<br /> Rule Engine<br /><br /> The concept of Rule Engine [9] is very ambiguous in nature. It could be any system that makes use of rules, in any form, in order to leverage upon<br /> so that it can be applied to data in order to produce meaningful outcomes. The common instance of rule engine includes simple systems like that of a<br /> form validation and dynamic expression engines which work on a stream of data. Rules can be embedded in the application or maybe as a service. Rules<br /> are generally "stateful" and are always an integral part of an application<br /> Figure1 : Rules<br /><br /> The rule engine typically has a lot for rules similar to the skeleton shown in figure shown above, that are executed based upon a hierarchical<br /> structure defined by another entity / user. The end goal of the rule engine is to help produce meaningful outcomes. The main end goal of the<br /> engine is to provide a scalable environment to build rules and make use of them. The figure shows a typical inference with the help of a rule engine<br /> The figure explains an outcome of either how one can take a decision of living of humanity or if humanity being doomed by taking a call, based on if<br /> honest human exists. The series of when and then conditions helps the rule engine to decide the outcome. The initial rule is to assert when honest<br /> humans exist. If the assertion is true then the rule engine will print a message “Hurrah!!! Humanity lives”, if the assertion is false then the rule<br /> infers doom of the humanity by printing a message “Humanity is Doomed<br /> Page 5<br /> Figure2 :<br /> Advantages of Rule Engine over if… then structure<br /> Declarative Programming<br /> Rule engines emphasis is on "What one has to do" not "How once can do it<br /><br /> The major advantage of this by leveraging on rules makes it easy to give solutions to difficult problems and consequently have these solutions<br /> verified since rules are much simpler to read than code<br /> Logic and Data Separation<br /><br /> Your data is contained in domain objects; the logic is contained in the rules. This is fundamentally removing the OO coupling of data and logic<br /> together, which can be boon or bane depending on once<a href='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' class="matched-text" title='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' target='_blank'> point of view. The advantage is that the logic can be much easier to maintain</a><a href='https://docs.jboss.org/drools/release/5.2.0.Final/drools-expert-docs/html/ch01.html' class="matched-text" title='https://docs.jboss.org/drools/release/5.2.0.Final/drools-expert-docs/html/ch01.html' target='_blank'> as</a> and<a href='http://docs.jboss.org/drools/release/5.5.0.Final/drools-expert-docs/html/ch01.html' class="matched-text" title='http://docs.jboss.org/drools/release/5.5.0.Final/drools-expert-docs/html/ch01.html' target='_blank'> when there<br /> are changes in the future, as the logic is</a> emulated as rules. This especially a true advantage<a href='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' class="matched-text" title='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' target='_blank'> if the logic is cross-domain or multi-domain<br /></a> interdependent<br /> Speed and Scalability<br /><br /> The separation of data and logic to one’s domain object data helps in speed, scalability and also especially efficient when one has datasets that do<br /> not change entirely<br /> Centralization of Knowledge<br /><br /> Making use of rules, one can create a repository of knowledge in the form of rules which is executable. This makes it a single point of truth, for<br /> instance business policy<a href='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' class="matched-text" title='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' target='_blank'> ideally rules are so readable that they can also</a> double up as documentation<br /> Page 6<br /> Tool Integration<br /><br /> Tools such as PyCharm [10] and in future maybe extensions<a href='https://docs.jboss.org/drools/release/5.2.0.Final/drools-expert-docs/html/ch01.html' class="matched-text" title='https://docs.jboss.org/drools/release/5.2.0.Final/drools-expert-docs/html/ch01.html' target='_blank'> to Web based User Interfaces provide ways to edit and manage rules</a> and also get<br /> feedback, validation and content aid. Auditing and debugging tools are also incorporated as part of this. The rule when implemented on a platform can<br /> also connect to multiple sources thus making it a one stop solution for all the integration and consumption<br /> Explanation Facility<br /><br /> Platform effectively provide an explanation facility by providing log of<a href='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' class="matched-text" title='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' target='_blank'> the decisions made by the rule engine along with</a> the reasons describing why<br /> the decisions were made, thus helping the end user formulate for rules and take control of the randomness<br /> Understandable Rules<br /><br /> The object models and Domain Specific Languages that model ones problem domain, can set oneself up to write rules that are very similar to natural<br /> language. They provide themselves to logic that is more understandable to non-software-developers, business analysts, and Domain experts as they are<br /> laid down in their language<br /> When to use a Rule engine and when not to use Rule engine<br /><br /> The simplest answer to this question is when there are no sufficient traditional programming approaches to solve this problem. We could use a rule<br /> engine when we have the following problems<br /> The traditional problem at hand is just too tough to handle<a href='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' class="matched-text" title='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' target='_blank'> for traditional code<br /> The problem may not be</a> too complex, but we cannot see a simple way of building it<br /> The problem is cannot be solved by an algorithm based solution<br /> The problem is not completely understood and needs iterative modifications<br /> and the logic changes often<br /><br /> Domain expert / Business analysts are easily available and have moderate technical knowledge; they are<a href='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' class="matched-text" title='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' target='_blank'> generally a wealth of knowledge about<br /> rules and processes.</a> Rules facilitate<a href='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' class="matched-text" title='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' target='_blank'> them to express the logic in their own terms<br /><br /></a> Rule engines are mostly dynamic in the context that the rules can be saved, managed, modified and updated as data in a file, they are often seen<a href='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' class="matched-text" title='https://access.redhat.com/documentation/en-US/JBoss_Enterprise_SOA_Platform/4.3/html-single/JBoss_Rules_Reference_Guide/index.html' target='_blank'> as a<br /> solution to the problem of deploying software,</a> If this is the reason one wishes to use a rule engine, then it is not a good idea as rule engine suits<br /> well only when there are declarative rules. It is not a wise option to use a rule engine to replace process flows or work flows as there are several<br /> alternatives available in the market to do the same<br /> Page 7<br /> Rules Design Pattern<br /><br /> The Rules Pattern [11] works by pulling out the rules from the rules processing logic by using the Single Responsibility Principle. This makes<br /> simpler to add new rules without making any changes to the rest of the system by using the Open/Closed Principle<br /><br /> The single responsibility principle states that every module/class should have responsibility over only a single part of the functionality provided<br /> by the entire software<br /><br /> In object-oriented programming paradigm the open/closed principle states that software entities such as classes, modules, functions, etc. always<br /> should be open for extension, but closed for modification i.e., such entities can be flexible and allow its behaviour to be extended without<br /> modifying any of its source code<br /><br /> With the Rules Pattern there is an Evaluator class that goes through a collection of rules and executes them. It evaluates the result and then takes<br /> a call on what action to take. In the simplest of all the cases this would just execute all the rules, but it is also feasible  to incorporate<br /> selection logic such that each rule that allows the Evaluator class to decide whether or not to execute the rule. The fig below describes how the<br /> classes interact in a rules design pattern<br /> Figure3 : Rules Design<br /> Need over available solutions and true motivation<br /><br /> There are multiple options available in today’s technology world, but the available options are not so mature to suit out requirement of current<br /> application. The summary of few of the tools explored explaining the pros and cons of them are as follows<br /> Page 8<br /> Drools<br /><br /> This is a Java based business process rules management system.  The positives are they have a sufficient user interface available to manage rules<br /> also integrated them, these rules are not flexible and do not integrate easily will other open source technologies. The feature provided are very<br /> strongly coupled to java based platforms and applications. The code needs compilation, integration and testing whenever there are modifications and<br /> are difficult to maintain. The application is free but the learning curve is too huge to accommodate our application needs<br /> Decisions<br /><br /> This is another platform similar to Drools, it contains features that are most similar to out applications requirement but, it is again not open<br /> sources and license is expensive. The operational cost, learning curve and maintenance is too high<br /> In rule<br /><br /> This is a rule engine for business built using .NET platform. This has good features that can be only integrated in the .NET environment. The code<br /> needs compilation, integration and testing similar to DROOL. The application is not free there are lot of licensing cost and  the learning curve<br /> also relatively high<br /> Figure4 : Rules.NET by Decisions<br /> Page 9<br /> Chapter 3: Project<br /> Existing System<br /><br /> The existing system consists of multiple nests of conditional statements and rules in order to reconcile the data to take decisions. The domain<br /> specific rules written are stereotype and interlock themselves and difficult to scale them by adding new rules. The natural tendency of any software<br /> is to undergo changes in the due course of time. The changes if any are very difficult to incorporate and integrating and creating the new rules and<br /> propagating through the system are very complex in nature. Due to infeasibility the original system design cannot be incorporated due to compliance<br /> issues. The goal of the existing system is to take data as input from various sources such as CSV, text files, Database systems and data feeds etc<br /> apply certain domain specific rules to the data and give the output of the file and also state the different anomalies so that the business analysts<br /> can take decisions<br /> Figure5 : Knotted rules in Existing<br /> Problems with Existing System<br /><br /> The code in the existing system has a lot of conditional logic and duplication, thus making it very hard to incorporate new rules as the code gets<br /> very difficult to understand and to digest what is actually going on. This sort of code generally has comments elaborating what the different<br /> sections of conditional logic are doing. The complexity only gets worse as we have to add more conditions over time and also gets extremely knotted<br /><br /> There are lot of complex and nested conditional statements which are very difficult to maintain and scale it, any new addition should undergo<br /> rigorous integration testing and there is lot of resources, time and cost involved. There are many loose ends that needs to be joined together so<br /> various components have more visibility into each other<br /> Page 10<br /> Available Software Solutions and their Issues<br /><br /> Modern technologies have spanned across various business aiding them at different levels. Business Rule engines form the foundation in modelling<br /> multiple business rules. There are lot of matured technologies available as proprietary software. Few of the available popular<br /><br /> softwares are Drools, InRule etc. which are expensive and learning curve is huge. Since our existing systems components consist of only open-soures<br /> technologies, integrating them with available proprietary software requires lot of effort and huge licencing cost<br /> Proposed System<br /><br /> The rules grow exponentially and the business analysts want to explore innovative way to model rules on the fly and also add them without any manual<br /> intervention with little scripting background they want to leverage open source options where they can have a lot of flexibility and no licensing<br /> cost. The decision engine platform provides end to end features so as to satisfy all the current application needs to be more configurable ,<br /> and automatically deployable to get insights. The whole systems leverages the rules design pattern and completely built using open source<br /> technologies<br /> The proposed system will have the following components<br /> Rule repository<br /> Rule Orchestration<br /> Decision Engine<br /> Rule Repository<br /><br /> The Rule Repository consists of multiple modules which can be modified, deleted and incorporated on the fly. The rules in this repository is easily<br /> configurable and for the foundation for the Rule orchestration. The key functionality of the repository is to provide security, version control and<br /> easy of managing and changing it on the fly<br /> Figure6 : Rule<br /> Page 11<br /><br /> The figure explains the various rules that are available and can be stacked, sorted, consumed, modified, and updated. The high level implementation<br /> aspects are explained in the Implementation chapter<br /> Rule Orchestration<br /><br /> The Rule Orchestration consists of Meta class which whose modules and attributes get generated on the fly depending on which got modified, deleted<br /> and incorporated on the fly in the rule repository. The rules in repository are made ready for the Decision engine to consume. The high level<br /> implementation aspects are explained in the Implementation chapter<br /> Figure7 : Rule<br /> Functionality Repository<br /><br /> The functionality repository consists of all the features the Business Analyst wants to execute. The type and sequence in which the rules are<br /> required for individual feature is stored as a JSON by the analyst, the flow sequence stored is pulled up by the decision engine to execute. The<br /> implementation details are explained in the Implementation chapter<br /> Decision Engine<br /><br /> The decision engine forms the crux of this whole platform. It uses the rule orchestration and Functionality repository class to execute the required<br /> domain specific rules on the data got either from the API or a CSV. Figure 2 shows the high level flow of how multiple rules can be applied<br /> streams from an API or CSV. The engine has flexibility for the user to pick and choose the flow as deemed necessary based on the situation and<br /> requirements of the analysts<br /> Page 12<br /> Figure 8: Sources on which Decision Engine<br /><br /> The engine chooses a subset of rules from the rule orchestration, the order of execution of subset of rules are based upon the configuration set by<br /> the user for a specific functionality<br /> Figure9 : Decision Engine Flow<br /><br /> The decision engine can be at an high level visualised as figure above the step 1 shows the input of data as a stream, where there is a stamp<br /> engine which applies rules on it and finally the stream keeps moving where the figure below shows the step 2 of the decision where the result of<br /> decision engine on each stream set comes out as a final output upon<br /> application of the rules using the orchestra and various features as deemed necessary and available within the frame work<br /> Figure10 : Decision Engine Flow<br /> Page 13<br /><br /> The API/CSV is a source of continuous stream of data that when fed to the decision engine gives a resultant output. The output can be something like<br /> one of the options as shown in the figure below. The figure shows the output of decision engine, the output is something as follows<br /> True or false<br /> The data stream can be subjected to several rules and the output is Boolean in nature<br /> Example<br /> o	Does the data pass the integrity test and conform to the standard by all numbers are being type float<br /> o	Provide an approval or contractual decision<br /> Value output<br /> The data stream can be subjected to several rules and the output is a value resultant of a computation<br /> Example<br /> o	Does the sum of all the supply is greater than the demand<br /> o	Score a Credit application<br /> Triger<br /><br /> When a sequence of data is subjected to a feature then if there are any anomalies found then the output of such anomalies are captured in the data<br /> bases and also an email is triggered so the intended person is notified<br /> Figure 11: Output of the decision<br /> Page 14<br /> Objectives<br /> There are no matured open source decision engines built using python which satisfies applications current needs. Hence objectives is to<br /> To build, deploy and scale the existing stereotype rules/models to a more maintainable and configurable Decision engine<br /> To provide an easy interface and framework to model rules on the fly build, test and deploy it without any manual intervention<br /> Scope of work<br /> Studying the existing decision engine environments and architectures<br /> Use open source tools and build an engine which can interact with various components<br /> Designing/updating existing applications to use the engine<br /> Validating the applications and analyzing the post deployment activities<br /> Page 15<br /> Chapter 4: Decision<br /> What is a Platform<br /><br /> Long back we used to reserve the use of the word platform [17] to show a complete and holistic software programming development environment and<br /> underlying subsystem which consist of language, runtime, components and all associated libraries and binaries. The result of using a platform was<br /> generally called a software application, which in further years everyone started calling it an “app”. In the new modern era, a platform became<br /> something more different. Where one thought it as the underlying computer system, but present day one has to accept the fact that the software<br /> industry visualizes a platform to be anything that you can build upon. Products or applications come with predefined business logic that narrows down<br /> their ultimate breadth of scope. Platforms on the other hand segregate out the logic functions of applications so that IT software can be built for<br /> change<br /> Expected Features<br /><br /> The solution should be made to bring the features of the system to replace the existing one and also into operation in all the previous systems<br /> fallacies fixed. The following are the features required<br /> User friendly design<br /><br /> The project should provide the user with the ease of avoiding the hassle of hard coding multiple conditional logics and move the manual development<br /> effort into hands of non-developer. The design being pro non-developer it will save a lot of effort as the user interface that is being designed is<br /> very easy considering the factor that anyone of the non-technical person can use it with ease<br /> Cost Reduction<br /><br /> Reduce the number of Person-hours required to deploy and testing the changes that need to be incorporated thus saving a lot of effort for the project<br /> APIs that are run manually as of now and need a skilled developer. This is a custom application tweaked to suffice the application current needs, the<br /> development effort is one time and minimum and makes the whole system reusable and reduced the cost in terms of licensing<br /> Training<br /><br /> The solution should be designed in such a way that end user can create and modify rules with minimum scripting knowledge and the deployment is<br /> completely automated process<br /> User should be able to use the software with very less training<br /> Page 16<br /> Decision Platform Details<br /> Python Open-Source Scripting Language<br /> Python [19] is the language used to emulate the decision<br /> Python is Interpreted: Code is processed during runtime by the interpreter. There is no compilation required before executing it<br /><br /> Python is Interactive: One can actually sit at a Python prompt and interact with the interpreter directly emulate the programs, this forms the crux<br /> of the applications where one can incorporate new rules with limited coding experience<br /><br /> Python is Object-Oriented: It has all the features of Object-Oriented style of programming that encapsulates code within objects thus brining in<br /> security<br /> Python is a Beginner's Language: An amazing language for the beginner-level programmers and supports the good development for the decision engine<br /> Continuous Integration Using Jenkins<br /><br /> Jenkins [20] is a cross-platform, continuous integration and continuous delivery application that increases significant productivity. The decision<br /> engine platform uses Jenkins to build, test and deploy the rules continuously making it easier for non-developers to integrate changes to the rules<br /> and making it easier for end users to use it easily. It also allows the Business analysts to continuously deliver new rules by providing powerful<br /> ways to define the build pipelines and integrating with python scripts and version controlling<br /> Connection to various API and Commercial Databases<br /> The platform provides easy wrappers and libraries for extracting data from various commercial databases as well as from API’s that provide data<br /> Output Handlers<br /><br /> The platform provides an interface which would provide how the output has to be generated. Either it should print on screen or save it as a CSV or<br /> persist it in database<br /> Integrated Development/Execution Environment<br /><br /> The integrated Development and execution environment used is Pycharm.  Pycharm provides perfect support for code analysis, graphical debugging and<br /> integrated unit test environment, perfect integration support with version control systems, and supports easy development with python, XML and<br /> editing files. PyCharm supports cross-platform development<br /> Page 17<br /> Chapter 5:<br /> Project Overview<br /> Figure 12: Project<br /><br /> The above figure (figure 12) shows the high level overview of the system. The Business analyst interacts with the decision engine using the<br /> or the PyCharm. Business analyst can make changes to the rules in rules repository, JSON in the functionality repository by Insert, Update and Delete<br /> from Jenkins/PyCharm Interface. The decision Engine is the core, where all the processing takes place. The process is invoked by the analyst using<br /> Jenkins/PyCharm, The engine dumps the output to CSV/Database which can be retrieved<br /> Rule Repository<br /> The rule repository folder consists all the rules that is part of the decision engine<br /> The rule repository Folder Structure<br /><br /> The rule repository folder starts with the root directory by default and the nomenclature of the folder is “rules”. It creates the folder is the<br /> folder is not existent<br /> Rules<br /><br /> The rules are stored inside the rules folder. The rules are nothing but python modules stored in text files that. These modules are pre tested and<br /> conforms to<br /> Page 18<br /><br /> Single responsibility principle. The unit test for individual modules help to ensure the correctness of individual functionality. The Rule files are<br /> added to the folder or modified using Jenkins or PyCharm editor by the business analyst<br /> Rule Repository Base Class<br /><br /> The Rules Base class is a skeleton class which contains a standard structure for the Decision engine to use. The method of the class gets added at<br /> runtime from the rules present in the Rules folder. All the successful method loads are made available to the decision engine and the erroneous loads<br /> are also made note of in the log<br /> Functionality Repository<br /><br /> The Functionality repository is a descriptive interface just like the Rules folder which contains a standard structure for the Decision engine to<br /> know and run the sequence of execution. The each of the functionality is saved as a JSON inside a test file and read at runtime from the decision<br /> engine based on what functionality needs to be run on the set of data. All the successful rules runs are print on screen and the erroneous loads are<br /> also made note of in the log. The Functionality JSON are added to the folder or modified using Jenkins or PyCharm editor. The functionality JSON’s<br /> are added to the folder or modified using Jenkins or PyCharm editor by the business analyst. The available Functionality is as follows<br /><br /> Data Reconciliation: There are a few set of rules that needs to be applied on data stream. The set of rules are applied in a sequence or with<br /> multiple nested sequences. The output is generally in the nature of sanity test for individual records, sometimes it could also be updating of the<br /> records. This feature can also be used to detect anomalies in the data<br /><br /> Contract Compliance : Where there is a contract between the supplier and consumer , there needs to be certain compliance maintained in terms<br /> much one consumes<br /> Decision Engine<br /><br /> The decision engine is the central executor; it provides command arguments features to get decision. The basic input for the Engine is the API/CSV<br /> file, the functionality that needs to be applied and output format<br /> The various features it provides currently are as follows<br /> Input CSV file data and “Reconcile” parameter to perform reconciliation and get the output of the reconciled data as a csv<br /> Input the data get the contract Minimum and contract maximum compliance as output<br /><br /> The decision engine is written in pure python code. The decision engine can connect and interact with various other components of the application to<br /> retrieve the necessary data or send or even update as deemed necessary<br /> Page 19<br /> Authentication and Authorization<br /><br /> Authentication is the mechanism using which systems securely identify who their users are. The authentication scheme used in the system is token<br /> based authentication. Authorization is the mechanism using which a system gets to know what level of access a particular authenticated user should<br /> have access what kind of resources controlled by the entire system. Security is one major area where customization is very important the Platform<br /> provides all the necessary security system using OAuth. Token-based authentication provided here is the specialized version of Basic Authentication<br /> system provided in all authentication systems. The Authorization header tag consists of the authorization token as the username, and there is no<br /> password required. The script in platform assumes that user accounts are stored in user_accounts MongoDB collection. All the included API resources<br /> and methods in the platform is secured unless they are made explicitly public<br /> Page 20<br /> Summary<br /><br /> The aim of this dissertation work was to bring in flexibility and autonomous capability to the current system, so as to gain cost and efficiency<br /> There were no matured open source decision engines built using python which satisfies applications current needs. Hence the moto was to build an<br /> effective engine that can automatically build, deploy and scale the existing stereotype rules and models to a more maintainable and configurable<br /> Decision engine<br /><br /> The current platform has an easy interface and framework to model rules on the fly build, test the rules and also deploy it without any manual<br /> intervention. The decision engine platform is built after studying the existing decision engine environments and architectures, while keeping in mind<br /> the current application needs. Leveraging upon all open source tools and the engine’s efficiency gain is brought about by having features that<br /> interact with various components within the system and as well as the present application<br /><br /> The current platform built during this dissertation course work has also been tweaked to seamlessly integrate, design, update and work with existing<br /> applications, but in a more sophisticate and configurable way. The two Key features supported during the current Phase of the platform is Data<br /> Reconciliation and Contract compliance. These features provide the business all the flexibility to gets valuable insights into the data curated from<br /> multiple sources<br /> Page 21<br /> Recommendations and Future works<br /><br /> The goal of the current platform was to bring in flexibility and configurability to existing stereotype nested if-then-else blocks. The current<br /> platform incorporates all the necessary functionality, flexibility, configurability with certain level of assumptions. The current platform assumes<br /> that the business analyst has a certain level of basic programing knowledge<br /><br /> The current system has the rules modified and rule flow decided and configured by the business analyst with a very minimum programming knowledge<br /> Future recommendation would be to completely eliminate even the smallest need of programing exposure so that the Business analyst can get exposure to<br /> one that has a fully independent body which uses natural language processing to configure, add, delete and modify the Rules. The system should have<br /> an extension where the rules are written in a language of the business analyst, but gets converted to syntactic python code that automatically gets<br /> built, tested and deployed<br /><br /> Apart from that of a Natural language processing engine to create and decide the rules and rule process flow, there has to be a more sophisticated<br /> graphical user interface developed so that it is even more intuitive and flexible to make changes and also keep track of the changes<br /></p>
+                        
+                        
+                    </div>
+                    
+                </div> 
+            </div>
+
+            <div id="footer">
+                <div id="footermenu">
+                    <div id="col1">
+                        <ul>
+                            <li>
+                                <a title="Plagiarism detection software" href="http://www.scanmyessay.com/plagiarism-detection-software.php">Plagiarism Detection Software</a>
+                            </li>
+                            <li>
+                                <a title=" Plagiarism Test" href="http://www.scanmyessay.com/plagiarism-test.php">Plagiarism Test </a>
+                            </li>
+                            <li>
+                                <a title="Plagiarism Detector" href="http://www.scanmyessay.com/plagiarism-detector.php">Plagiarism Detector</a>
+                            </li>
+                            <li>
+                                <a title="Detect Plagiarism" href="http://www.scanmyessay.com/detect-plagiarism.php">Detect Plagiarism</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="col2">
+                        <ul>
+                            <li>
+                                <a title="Essay Checker" href="http://www.scanmyessay.com/essay-checker.php">Essay Checker</a> 
+                                | <a href="http://www.scanmyessay.com/free-check-for-plagiarism.php">Free Check for Plagiarism</a>
+                            </li>
+                            <li>
+                                <a title="Free lesson plans" href="http://www.scanmyessay.com/lesson-plans.php">Lesson plans</a>
+                            </li>
+                            <li>
+                                <a title="Avoid plagiarism" href="http://www.scanmyessay.com/avoid-plagiarism.php">Avoid Plagiarism</a>
+                            </li>
+                            <li>
+                                <a title="Plagiarism Check" href="http://www.scanmyessay.com/plagiarism-check.php">Plagiarism Check</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="col3">
+                        <ul>
+                            <li>
+                                <a title="Plagiarism prevention software" href="http://www.scanmyessay.com/plagiarism-prevention.php">Plagiarism Prevention</a>
+                            </li>
+                            <li>
+                                <a title="Turnitin" href="http://www.scanmyessay.com/turnitin.php">Turnitin </a> | <a href="http://www.scanmyessay.com/check-for-plagiarism-free.php">Check for Plagiarism Free</a>
+                            </li>
+                            <li>
+                                <a title="Editing services" href="http://www.scanmyessay.com/essay-marking/index.php">Editing Services</a>
+                            </li>
+                            <li>
+                                <a title="Free Scanner Software" href="http://www.essaycoursework.com/coursework-writing.php">Coursework writing</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="footerbottom">
+                    <p>
+                        Copyright © 2012 All Rights Reserved. 
+                        <a href="http://www.scanmyessay.com">Scan My Essay</a> 
+                        - Free Plagiarism Scanner, Checker and Detection Tool.  
+                        Viper and ScanMyEssay.com are trading names of Angel Business Limited, 
+                        a Company registered in England and Wales with Company Registration No: 07344835, 
+                        The Loft, 3 Plumptre Street, The Lace Market, Nottingham NG1 1JL | 
+                        <a href="http://www.scanmyessay.com/viper-keygen-crack.php">Warning - Viper Keygen / Viper Crack</a>
+                    </p>
+                    <p>
+                        Please note that by using ScanMyEssay.com, VIPER and any other  software or resources on the ScanMyEssay Website, you are signifying  your agreement
+                        to our <a href="http://www.scanmyessay.com/terms.php">terms and conditions</a>, and our <a href="http://www.scanmyessay.com/privacy-policy.php">privacy policy</a> | <a href="http://www.scanmyessay.com/sitemap.xml">XML sitemap</a> 
+                        | <a href="http://www.scanmyessay.com/ror.xml">ROR</a> 
+                        | <a href="http://www.scanmyessay.com/urllist.txt">TXT</a>
+                        | <a href="http://www.scanmyessay.com/sitemap.html">HTML</a>
+                        | <a href="http://www.scanmyessay.com/sitemap.php">PHP</a> | <a href="http://cn.scanmyessay.com">剽窃检查</a>
+                        | <a href="http://es.scanmyessay.com">Verificador de plagio gratuito</a> 
+                        | <a href="http://fr.scanmyessay.com/">Détecteur de plagiat gratuit</a> 
+                        | <a href="http://in.scanmyessay.com/">Viper साहित्यिक चोरी जांचने का एक निशुल्क साधन...</a>
+
+                    </p>
+                </div> 
+            </div>
+
+        </div>
+         
+    </body>
+</html>
